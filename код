@@ -1,0 +1,59 @@
+const int M11 = 10;
+const int M12 = 11;
+const int M22 = 12;
+const int M21 = 9;
+const int sl = 4;
+const int s = 5;
+const int sr = 6;
+char DM;
+int r, f, l;
+void setup() {
+   pinMode(M11, OUTPUT);
+   pinMode(M12, OUTPUT);
+   pinMode(M22, OUTPUT);
+   pinMode(M21, OUTPUT);
+   pinMode(sl, INPUT);
+   pinMode(s, INPUT);
+   pinMode(sr, INPUT);
+   Serial.begin (9600);
+}
+
+void loop() {
+  if (Serial.available()>0){
+    DM=Serial.read();
+  }
+  l = digitalRead(sl);
+  r = digitalRead(sr);
+  f = digitalRead(s);
+  if(DM=='F'){
+    digitalWrite(M11, LOW);
+    digitalWrite(M12, LOW);
+    digitalWrite(M22, HIGH);
+    digitalWrite(M21, LOW); 
+  }
+  if(DM=='B'){ 
+    digitalWrite(M11, LOW);
+    digitalWrite(M12, LOW);
+    digitalWrite(M22, LOW);
+    digitalWrite(M21, HIGH);
+  }
+  if(DM=='L'){
+    digitalWrite(M11, LOW);
+    digitalWrite(M12, HIGH);
+    digitalWrite(M22, LOW);
+    digitalWrite(M21, LOW);
+  }
+  if(DM=='R'){
+   digitalWrite(M11, HIGH);
+   digitalWrite(M12, LOW);
+   digitalWrite(M22, LOW);
+   digitalWrite(M21, LOW);
+  }
+  if(DM=='S'){
+   digitalWrite(M11, LOW);
+   digitalWrite(M12, LOW);
+   digitalWrite(M22, LOW);
+   digitalWrite(M21, LOW);
+  }
+  delay(10);
+}
